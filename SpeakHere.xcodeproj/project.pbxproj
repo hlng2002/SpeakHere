@@ -41,6 +41,7 @@
 		F7694A500F40F82A006C6FBF /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7694A4D0F40F82A006C6FBF /* CoreFoundation.framework */; };
 		F7694A510F40F82A006C6FBF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7694A4E0F40F82A006C6FBF /* OpenGLES.framework */; };
 		F7694A5A0F40F844006C6FBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7694A590F40F844006C6FBF /* QuartzCore.framework */; };
+		F87D65481E976A9800B4145B /* circular_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F87D65461E976A9800B4145B /* circular_buffer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,8 @@
 		F7694A4D0F40F82A006C6FBF /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		F7694A4E0F40F82A006C6FBF /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F7694A590F40F844006C6FBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F87D65461E976A9800B4145B /* circular_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circular_buffer.cpp; sourceTree = "<group>"; };
+		F87D65471E976A9800B4145B /* circular_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circular_buffer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +233,8 @@
 		F76949EE0F40F337006C6FBF /* Play & Record */ = {
 			isa = PBXGroup;
 			children = (
+				F87D65461E976A9800B4145B /* circular_buffer.cpp */,
+				F87D65471E976A9800B4145B /* circular_buffer.h */,
 				F76949EF0F40F34D006C6FBF /* AQPlayer.mm */,
 				F76949F00F40F34D006C6FBF /* AQRecorder.mm */,
 				F76949F10F40F34D006C6FBF /* AQRecorder.h */,
@@ -265,6 +270,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 4KB8M25XK6;
+						ProvisioningStyle = Automatic;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SpeakHere" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -322,6 +333,7 @@
 				F76949E90F40F32A006C6FBF /* GLLevelMeter.m in Sources */,
 				F76949EA0F40F32A006C6FBF /* LevelMeter.m in Sources */,
 				F76949F30F40F34D006C6FBF /* AQPlayer.mm in Sources */,
+				F87D65481E976A9800B4145B /* circular_buffer.cpp in Sources */,
 				F76949F40F40F34D006C6FBF /* AQRecorder.mm in Sources */,
 				F76949FA0F40F40B006C6FBF /* MeterTable.cpp in Sources */,
 				2BC3DD8E15AB896400B0B61B /* CADebugMacros.cpp in Sources */,
@@ -364,14 +376,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 4KB8M25XK6;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpeakHere_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.SpeakHere;
 				PRODUCT_NAME = SpeakHere;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -379,24 +396,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				DEVELOPMENT_TEAM = 4KB8M25XK6;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = SpeakHere_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yourcompany.${PRODUCT_NAME:identifier}";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wx.SpeakHere;
 				PRODUCT_NAME = SpeakHere;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -405,11 +428,12 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

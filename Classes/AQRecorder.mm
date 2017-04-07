@@ -102,6 +102,12 @@ void AQRecorder::MyInputBufferHandler(	void *								inUserData,
 											 inPacketDesc, aqr->mRecordPacket, &inNumPackets, inBuffer->mAudioData),
 					   "AudioFileWritePackets failed");
 			aqr->mRecordPacket += inNumPackets;
+            aqr->mpAudioBuffer->write((const char*)inBuffer->mAudioData, inBuffer->mAudioDataByteSize);
+            while(aqr->mpAudioBuffer->size()>=aqr->mFrameLenInByte)
+            {
+                int read_size = aqr->mpAudioBuffer->read((char*)aqr->mpRecBuf,aqr->mFrameLenInByte);
+                //do whatever you want here
+            }
 		}
 		
 		// if we're not stopping, re-enqueue the buffe so that it gets filled again
@@ -117,6 +123,9 @@ AQRecorder::AQRecorder()
 {
 	mIsRunning = false;
 	mRecordPacket = 0;
+    mpAudioBuffer = new B_MODULE::Circular_Buffer(16000*60);
+    mFrameLenInByte = 640; //16000*20*2/1000
+    mpRecBuf = new short[mFrameLenInByte/2];
 }
 
 AQRecorder::~AQRecorder()
@@ -124,6 +133,16 @@ AQRecorder::~AQRecorder()
 	AudioQueueDispose(mQueue, TRUE);
 	AudioFileClose(mRecordFile);
 	if (mFileName) CFRelease(mFileName);
+    if(mpAudioBuffer)
+    {
+        delete mpAudioBuffer;
+        mpAudioBuffer = NULL;
+    }
+    if(mpRecBuf)
+    {
+        delete [] mpRecBuf;
+        mpRecBuf = NULL;
+    }
 }
 
 // ____________________________________________________________________________________
@@ -172,6 +191,7 @@ void AQRecorder::SetupAudioFormat(UInt32 inFormatID)
 	if (inFormatID == kAudioFormatLinearPCM)
 	{
 		// if we want pcm, default to signed 16-bit little-endian
+        mRecordFormat.mSampleRate = 16000;
 		mRecordFormat.mFormatFlags = kLinearPCMFormatFlagIsSignedInteger | kLinearPCMFormatFlagIsPacked;
 		mRecordFormat.mBitsPerChannel = 16;
 		mRecordFormat.mBytesPerPacket = mRecordFormat.mBytesPerFrame = (mRecordFormat.mBitsPerChannel / 8) * mRecordFormat.mChannelsPerFrame;
