@@ -54,6 +54,7 @@ Copyright (C) 2012 Apple Inc. All Rights Reserved.
 #include "CAStreamBasicDescription.h"
 #include "CAXException.h"
 #include "circular_buffer.h"
+#include "voice_message_denoise.h"
 
 #define kNumberRecordBuffers	3
 
@@ -85,6 +86,7 @@ class AQRecorder
         B_MODULE::Circular_Buffer*  mpAudioBuffer;
         short*                       mpRecBuf;
         int                         mFrameLenInByte;
+        VoiceMessageDenoise*        mpDenoise;
         
 
 		void			CopyEncoderCookieToFile();

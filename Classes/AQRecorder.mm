@@ -107,6 +107,7 @@ void AQRecorder::MyInputBufferHandler(	void *								inUserData,
             {
                 int read_size = aqr->mpAudioBuffer->read((char*)aqr->mpRecBuf,aqr->mFrameLenInByte);
                 //do whatever you want here
+                aqr->mpDenoise->Process(aqr->mpRecBuf, aqr->mFrameLenInByte);
             }
 		}
 		
@@ -126,6 +127,8 @@ AQRecorder::AQRecorder()
     mpAudioBuffer = new B_MODULE::Circular_Buffer(16000*60);
     mFrameLenInByte = 640; //16000*20*2/1000
     mpRecBuf = new short[mFrameLenInByte/2];
+    mpDenoise = new VoiceMessageDenoise();
+    mpDenoise->Init(16000);
 }
 
 AQRecorder::~AQRecorder()
@@ -142,6 +145,12 @@ AQRecorder::~AQRecorder()
     {
         delete [] mpRecBuf;
         mpRecBuf = NULL;
+    }
+    if(mpDenoise)
+    {
+        mpDenoise->Uninit();
+        delete mpDenoise;
+        mpDenoise = NULL;
     }
 }
 

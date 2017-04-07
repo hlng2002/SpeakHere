@@ -42,6 +42,7 @@
 		F7694A510F40F82A006C6FBF /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7694A4E0F40F82A006C6FBF /* OpenGLES.framework */; };
 		F7694A5A0F40F844006C6FBF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7694A590F40F844006C6FBF /* QuartzCore.framework */; };
 		F87D65481E976A9800B4145B /* circular_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F87D65461E976A9800B4145B /* circular_buffer.cpp */; };
+		F87D654A1E97752D00B4145B /* libvoicemessagedenoise.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F87D65491E97752D00B4145B /* libvoicemessagedenoise.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,8 @@
 		F7694A590F40F844006C6FBF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F87D65461E976A9800B4145B /* circular_buffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = circular_buffer.cpp; sourceTree = "<group>"; };
 		F87D65471E976A9800B4145B /* circular_buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = circular_buffer.h; sourceTree = "<group>"; };
+		F87D65491E97752D00B4145B /* libvoicemessagedenoise.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvoicemessagedenoise.a; path = 3rd/voicemessagedenoise/libvoicemessagedenoise.a; sourceTree = "<group>"; };
+		F87D654B1E97790300B4145B /* libVcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libVcodec.a; path = 3rd/voicemessagedenoise/libVcodec.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F87D654A1E97752D00B4145B /* libvoicemessagedenoise.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -191,6 +195,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F87D654B1E97790300B4145B /* libVcodec.a */,
+				F87D65491E97752D00B4145B /* libvoicemessagedenoise.a */,
 				2BC3DD9115AB8AA100B0B61B /* CoreAudio.framework */,
 				F7694A4C0F40F82A006C6FBF /* AudioToolbox.framework */,
 				F7694A4D0F40F82A006C6FBF /* CoreFoundation.framework */,
@@ -386,9 +392,14 @@
 				GCC_PREFIX_HEADER = SpeakHere_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/3rd/voicemessagedenoise",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.SpeakHere;
 				PRODUCT_NAME = SpeakHere;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/3rd/voicemessagedenoise";
 			};
 			name = Debug;
 		};
@@ -404,9 +415,14 @@
 				GCC_PREFIX_HEADER = SpeakHere_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/3rd/voicemessagedenoise",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wx.SpeakHere;
 				PRODUCT_NAME = SpeakHere;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				USER_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/3rd/voicemessagedenoise";
 			};
 			name = Release;
 		};
